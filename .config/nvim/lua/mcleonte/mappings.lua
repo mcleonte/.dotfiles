@@ -34,23 +34,18 @@ g.mapleader = " "
 -- start command without holding Shift
 nmap(";", ":")
 
--- Window (/buffer) spliting
-nmap("vv", "<C-w>v") -- split vertically
-nmap("ss", "<C-w>s") -- split horizontally
-nmap("<leader>se", "C-w>=") -- equalize width of split windows
-nmap("<leader>w", ":close<CR>") -- close current split window
-
--- Window (/buffer) navigation
-nmap("<C-h>", "<C-w>h")
-nmap("<C-j>", "<C-w>j")
-nmap("<C-k>", "<C-w>k")
-nmap("<C-l>", "<C-w>l")
-
 -- Tabs
-nmap("<C-t>", ":tabnew<CR>")
-nmap("<C-w>", ":tabclose<CR>")
-nmap("<C-i>", ":tabn<CR>") -- tab
+nmap("t<Tab>", ":tabnew<CR>")
+nmap("q<Tab>", ":tabclose<CR>")
+nmap("<Tab>", ":tabn<CR>") -- <Tab> == <C-i>
 nmap("<S-Tab>", ":tabp<CR>") -- shift-tab
+
+-- Windows
+nmap("`", "<C-w>w") -- switch window, can prepend with window number
+nmap("q`", "<C-w>q") -- close window, can prepend with window number
+nmap("v`", "<C-w>v") -- split vertically
+nmap("h`", "<C-w>s") -- split horizontally
+nmap("e`", "<C-w>=") -- equalize width
 
 -- clear matches Ctrl+b
 -- c("noremap <C-b> :noh<cr>:call clearmatches()<cr>")
