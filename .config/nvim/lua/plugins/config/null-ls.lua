@@ -17,6 +17,14 @@ return function()
         command = "/home/leo/cs/.envs/py/nvim/bin/yapf",
       }),
 
+      -- sql
+      null_ls.builtins.formatting.sqlfluff.with({
+        command = "/home/leo/cs/.envs/py/nvim/bin/sqlfluff",
+      }),
+      null_ls.builtins.diagnostics.sqlfluff.with({
+        command = "/home/leo/cs/.envs/py/nvim/bin/sqlfluff",
+      }),
+
       -- markdown
       null_ls.builtins.formatting.prettier,
 
