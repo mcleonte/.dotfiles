@@ -88,12 +88,30 @@ return function()
           operator = p.green.base, --	Operators
           bracket = p.magenta.dim, -- Brackets and Punctuation
         },
+        diag = {
+          error = p.red.base,
+          warn = p.yellow.base,
+          info = p.white.base,
+          hint = p.black.bright,
+        },
+        diag_bg = {
+          error = "",
+          warn = "",
+          info = "",
+          hint = "",
+        },
         git = {
           add = p.green.base,
-          removed = p.magenta.base,
+          removed = p.red.base,
           changed = p.yellow.base,
-          conflict = p.red.base,
+          conflict = p.magenta.base,
           ignored = p.black.bright,
+        },
+        diff = {
+          add = p.green.base,
+          delete = p.red.base,
+          change = p.yellow.base,
+          text = p.white.base,
         },
       },
     },
