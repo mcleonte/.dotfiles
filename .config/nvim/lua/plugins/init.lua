@@ -6,192 +6,194 @@ local packer_startup, use = unpack(require("plugins.packer"))
 -- to separates config functions from this file
 
 packer_startup(function()
-  -- startup
-  use({ "wbthomason/packer.nvim", opt = true }) -- packer self check
-  use({ "lewis6991/impatient.nvim" }) -- speed up loading Lua modules to improve startup time
-  use({ "nathom/filetype.nvim", ext = "filetype" }) -- A faster version of filetype.vim
+	-- startup
+	use({ "wbthomason/packer.nvim", opt = true }) -- packer self check
+	use({ "lewis6991/impatient.nvim" }) -- speed up loading Lua modules to improve startup time
+	use({ "nathom/filetype.nvim", ext = "filetype" }) -- A faster version of filetype.vim
 
-  use({ "nvim-lua/plenary.nvim" })
-  use({ "hrsh7th/nvim-compe" }) -- dependency for mcleonte/autocompletion
+	use({ "nvim-lua/plenary.nvim" })
+	use({ "hrsh7th/nvim-compe" }) -- dependency for mcleonte/autocompletion
 
-  -- colorschemes
-  use("tomasr/molokai") -- required by molokayo
-  use("fmoralesc/molokayo")
-  use({ "navarasu/onedark.nvim" }) --, ext = "onedark" })
-  use({ "ray-x/aurora" })
+	-- colorschemes
+	-- use("tomasr/molokai") -- required by molokayo
+	-- use("fmoralesc/molokayo")
+	-- use({ "navarasu/onedark.nvim" }) --, ext = "onedark" })
+	use({ "ray-x/aurora" })
+	use({ "EdenEast/nightfox.nvim", ext = "nightfox" })
 
-  -- common
-  use("vim-airline/vim-airline") -- powerline
-  use("vim-airline/vim-airline-themes")
+	-- common
+	--use("vim-airline/vim-airline") -- powerline
+	--use("vim-airline/vim-airline-themes")
 
-  use("rhysd/vim-grammarous") -- grammar check
-  use("andymass/vim-matchup") -- matching parens and more
-  use("bronson/vim-trailing-whitespace") -- highlight trailing spaces
-  use("marko-cerovac/material.nvim")
+	use("rhysd/vim-grammarous") -- grammar check
+	use("andymass/vim-matchup") -- matching parens and more
+	use("bronson/vim-trailing-whitespace") -- highlight trailing spaces
+	use("marko-cerovac/material.nvim")
 
-  -- viewers
-  use({
-    "iamcco/markdown-preview.nvim",
-    ext = "markdownpreview",
-    run = "cd app && npm install",
-    cmd = "MarkdownPreview",
-    ft = { "markdown", "md", "MD" },
-    setup = function()
-      vim.g.mkdp_filetypes = { "markdown", "md", "MD" }
-    end,
-  })
+	use("rcarriga/nvim-notify")
 
-  -- Git
-  use({ "lewis6991/gitsigns.nvim", ext = "gitsigns" }) -- git added/removed in sidebar + inline blame
-  use({ "TimUntersberger/neogit", cmd = { "Neogit" } })
-  use("rhysd/git-messenger.vim")
-  use("tpope/vim-fugitive") -- Git commands
-  use({ "sindrets/diffview.nvim", ext = "diffview", requires = "nvim-lua/plenary.nvim" })
+	-- viewers
+	use({
+		"iamcco/markdown-preview.nvim",
+		ext = "markdownpreview",
+		run = "cd app && npm install",
+		cmd = "MarkdownPreview",
+		ft = { "markdown", "md", "MD" },
+		setup = function()
+			vim.g.mkdp_filetypes = { "markdown", "md", "MD" }
+		end,
+	})
 
-  -- Commenter & Colorizer
-  use({ "norcalli/nvim-colorizer.lua", event = "BufRead", ext = "colorizer" })
-  use({ "numToStr/Comment.nvim", event = "BufRead", ext = "comment" })
+	-- Git
+	use({ "lewis6991/gitsigns.nvim", ext = "gitsigns" }) -- git added/removed in sidebar + inline blame
+	use({ "TimUntersberger/neogit", cmd = { "Neogit" } })
+	use("rhysd/git-messenger.vim")
+	use("tpope/vim-fugitive") -- Git commands
+	use({ "sindrets/diffview.nvim", ext = "diffview", requires = "nvim-lua/plenary.nvim" })
 
-  -- Telescope
-  use({
-    "nvim-telescope/telescope.nvim",
-    module = "telescope",
-    ext = "telescope",
-    requires = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
-    cmd = { "Telescope", "SearchSession" },
-  })
-  use({ "nvim-telescope/telescope-project.nvim", after = "telescope.nvim", ext = "project" })
-  use({ "nvim-telescope/telescope-media-files.nvim", after = "telescope.nvim" })
-  use({ "nvim-telescope/telescope-file-browser.nvim", after = "telescope.nvim" })
-  use({ "jvgrootveld/telescope-zoxide", after = "telescope.nvim", ext = "telescope-zoxide" })
+	-- Commenter & Colorizer
+	use({ "norcalli/nvim-colorizer.lua", event = "BufRead", ext = "colorizer" })
+	use({ "numToStr/Comment.nvim", event = "BufRead", ext = "comment" })
 
-  -- Syntax
-  use({
-    "nvim-treesitter/nvim-treesitter",
-    event = { "BufRead", "BufNewFile" },
-    ext = "treesitter",
-    cmd = { "TSUpdate", "TSInstallSync" },
-    run = ":TSUpdate",
-    setup = function()
-      vim.keymap.set("n", "<leader>o", "<cmd>SymbolsOutline<cr>", { desc = "Symbols Outline" })
-    end,
-  })
-  use({ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" })
+	-- Telescope
+	use({
+		"nvim-telescope/telescope.nvim",
+		module = "telescope",
+		ext = "telescope",
+		requires = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
+		cmd = { "Telescope", "SearchSession" },
+	})
+	use({ "nvim-telescope/telescope-project.nvim", after = "telescope.nvim", ext = "project" })
+	use({ "nvim-telescope/telescope-media-files.nvim", after = "telescope.nvim" })
+	use({ "nvim-telescope/telescope-file-browser.nvim", after = "telescope.nvim" })
+	use({ "jvgrootveld/telescope-zoxide", after = "telescope.nvim", ext = "telescope-zoxide" })
 
-  use({ "hrsh7th/nvim-cmp" })
+	-- Syntax
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		event = { "BufRead", "BufNewFile" },
+		ext = "treesitter",
+		cmd = { "TSUpdate", "TSInstallSync" },
+		run = ":TSUpdate",
+		setup = function()
+			vim.keymap.set("n", "<leader>o", "<cmd>SymbolsOutline<cr>", { desc = "Symbols Outline" })
+		end,
+	})
+	use({ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" })
 
-  -- LSP
+	use({ "hrsh7th/nvim-cmp" })
 
-  -- nvim-cmp source for neovim builtin LSP client
-  use({ "hrsh7th/cmp-nvim-lsp" })
+	-- LSP
 
-  -- main lsp package manager
-  use({ "williamboman/mason.nvim", ext = "mason" })
+	-- nvim-cmp source for neovim builtin LSP client
+	use({ "hrsh7th/cmp-nvim-lsp" })
 
-  -- wrapper for bridging the gap between mason and lspconfig
-  use({ "williamboman/mason-lspconfig.nvim", ext = "mason-lspconfig" })
-  -- core lsp configurer plugin
-  use({ "neovim/nvim-lspconfig", ext = "nvim-lspconfig" })
+	-- main lsp package manager
+	use({ "williamboman/mason.nvim", ext = "mason" })
 
-  -- made for bridgin the gap between mason.nvim and null-ls.nvim
-  use({ "jayp0521/mason-null-ls.nvim", ext = "mason-null-ls" })
-  -- recommended by mason.nvim to pair with for linters and formatters
-  use({ "jose-elias-alvarez/null-ls.nvim", ext = "null-ls", requires = "nvim-lua/plenary.nvim" })
+	-- wrapper for bridging the gap between mason and lspconfig
+	use({ "williamboman/mason-lspconfig.nvim", ext = "mason-lspconfig" })
+	-- core lsp configurer plugin
+	use({ "neovim/nvim-lspconfig", ext = "nvim-lspconfig" })
 
-  -- A light-weight lsp plugin based on neovim's built-in lsp with a highly
-  -- performant UI.
-  use({ "glepnir/lspsaga.nvim", ext = "lspsaga" })
+	-- made for bridgin the gap between mason.nvim and null-ls.nvim
+	use({ "jayp0521/mason-null-ls.nvim", ext = "mason-null-ls" })
+	-- recommended by mason.nvim to pair with for linters and formatters
+	use({ "jose-elias-alvarez/null-ls.nvim", ext = "null-ls", requires = "nvim-lua/plenary.nvim" })
 
-  -- LSP signature hint as you type
-  use({ "ray-x/lsp_signature.nvim", ext = "lsp_signature" })
+	-- A light-weight lsp plugin based on neovim's built-in lsp with a highly
+	-- performant UI.
+	use({ "glepnir/lspsaga.nvim", ext = "lspsaga" })
 
-  -- vscode-like pictograms for neovim lsp completion items
-  use({ "onsails/lspkind.nvim", ext = "lspkind" })
+	-- LSP signature hint as you type
+	use({ "ray-x/lsp_signature.nvim", ext = "lsp_signature" })
 
-  -- session management
-  use({ "rmagatti/auto-session", ext = "auto-session" })
-  -- telescope integration for fuzy searching sessions
-  use({
-    "rmagatti/session-lens",
-    ext = "session-lens",
-    requires = { "rmagatti/auto-session", "nvim-telescope/telescope.nvim" },
-  })
+	-- vscode-like pictograms for neovim lsp completion items
+	use({ "onsails/lspkind.nvim", ext = "lspkind" })
 
-  -- maximizes and restores current window
-  use("szw/vim-maximizer")
+	-- session management
+	use({ "rmagatti/auto-session", ext = "auto-session" })
+	-- telescope integration for fuzy searching sessions
+	use({
+		"rmagatti/session-lens",
+		ext = "session-lens",
+		requires = { "rmagatti/auto-session", "nvim-telescope/telescope.nvim" },
+	})
 
-  -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  --  vim.lsp.diagnostic.on_publish_diagnostics, {
-  --  virtual_text = false
-  -- }
-  -- )
+	-- maximizes and restores current window
+	use("szw/vim-maximizer")
 
-  --  require'lspsaga'.init_lsp_saga {
-  --    error_sign = '!',
-  --    warn_sign = '^',
-  --    hint_sign = '?',
-  --    infor_sign = '~',
-  --    border_style = "round",
-  --    code_action_prompt = {
-  --      enable = false
-  --   }
-  --  }
+	-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+	--  vim.lsp.diagnostic.on_publish_diagnostics, {
+	--  virtual_text = false
+	-- }
+	-- )
 
-  -- UI helpers
+	--  require'lspsaga'.init_lsp_saga {
+	--    error_sign = '!',
+	--    warn_sign = '^',
+	--    hint_sign = '?',
+	--    infor_sign = '~',
+	--    border_style = "round",
+	--    code_action_prompt = {
+	--      enable = false
+	--   }
+	--  }
 
-  use({ "mbbill/undotree", cmd = "UndotreeToggle" })
+	-- UI helpers
 
-  -- A file explorer tree for neovim written in lua
-  -- default mappings: https://github.com/nvim-tree/nvim-tree.lua/blob/master/doc/nvim-tree-lua.txt#L1303
-  use({
-    "nvim-tree/nvim-tree.lua",
-    ext = "nvim-tree",
-    requires = {
-      "nvim-tree/nvim-web-devicons", -- optional, for file icons
-    },
-  })
+	use({ "mbbill/undotree", cmd = "UndotreeToggle" })
 
-  use({
-    "kevinhwang91/nvim-ufo",
-    ext = "nvim-ufo",
-    opt = true,
-    event = { "BufReadPre" },
-    wants = { "promise-async" },
-    requires = "kevinhwang91/promise-async",
-  })
-  -- use { "rcarriga/nvim-notify", ext = "nvim-notify" }
+	use({ "nvim-lualine/lualine.nvim", ext = "lualine", requires = { "nvim-tree/nvim-web-devicons", opt = true } })
+	use("nanozuki/tabby.nvim")
 
-  -- search
-  use("tpope/vim-eunuch") -- wrappers UNIX commands
-  use("tpope/vim-surround") -- surround characters shortcuts
-  use("tpope/vim-vinegar") -- file browser
-  use("nvim-tree/nvim-web-devicons") -- icons when searching
+	-- A file explorer tree for neovim written in lua
+	-- default mappings: https://github.com/nvim-tree/nvim-tree.lua/blob/master/doc/nvim-tree-lua.txt#L1303
+	use({
+		"nvim-tree/nvim-tree.lua",
+		ext = "nvim-tree",
+		requires = {
+			"nvim-tree/nvim-web-devicons", -- optional, for file icons
+		},
+	})
 
-  use("kassio/neoterm") -- terminal wrapper
+	use({ "lukas-reineke/indent-blankline.nvim", ext = "indent-blankline" })
+	use({
+		"kevinhwang91/nvim-ufo",
+		ext = "nvim-ufo",
+		opt = true,
+		event = { "BufReadPre" },
+		wants = { "promise-async" },
+		requires = "kevinhwang91/promise-async",
+	})
+	-- use { "rcarriga/nvim-notify", ext = "nvim-notify" }
 
-  -- diagnostics
-  -- https://github.com/mfussenegger/nvim-dap#usage
-  use("mfussenegger/nvim-dap")
-  use({
-    "mfussenegger/nvim-dap-python",
-    ext = "nvim-dap-python",
-    requires = { "mfussenegger/nvim-dap", "nvim-treesitter/nvim-treesitter" },
-    run = ":TSInstall python",
-  })
+	-- search
+	use("tpope/vim-surround") -- surround characters shortcuts
+	use("nvim-tree/nvim-web-devicons") -- icons when searching
 
-  -- testing
-  use({
-    "nvim-neotest/neotest",
-    ext = "neotest",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "mfussenegger/nvim-dap",
-      "nvim-treesitter/nvim-treesitter",
-      "antoinemadec/FixCursorHold.nvim",
-      "nvim-neotest/neotest-python",
-    },
-  })
+	use("kassio/neoterm") -- terminal wrapper
 
-  -- python
-  use({ "Vimjas/vim-python-pep8-indent", ft = "python" })
+	-- diagnostics
+	-- https://github.com/mfussenegger/nvim-dap#usage
+	use("mfussenegger/nvim-dap")
+	use({
+		"mfussenegger/nvim-dap-python",
+		ext = "nvim-dap-python",
+		requires = { "mfussenegger/nvim-dap", "nvim-treesitter/nvim-treesitter" },
+		run = ":TSInstall python",
+	})
+
+	-- testing
+	use({
+		"nvim-neotest/neotest",
+		ext = "neotest",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"mfussenegger/nvim-dap",
+			"nvim-treesitter/nvim-treesitter",
+			"antoinemadec/FixCursorHold.nvim",
+			"nvim-neotest/neotest-python",
+		},
+	})
 end)

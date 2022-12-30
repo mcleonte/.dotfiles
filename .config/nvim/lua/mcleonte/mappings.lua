@@ -31,9 +31,12 @@ end
 g.mapleader = " "
 -- g.maplocalleader = '\\'
 
+-- start command without holding Shift
+nmap(";", ":")
+
 -- Window (/buffer) spliting
-nmap("vv", "<C-w>v") -- split window vertically
-nmap("ss", "<C-w>s") -- split window horizontally
+nmap("vv", "<C-w>v") -- split vertically
+nmap("ss", "<C-w>s") -- split horizontally
 nmap("<leader>se", "C-w>=") -- equalize width of split windows
 nmap("<leader>w", ":close<CR>") -- close current split window
 
@@ -51,13 +54,13 @@ nmap("<S-Tab>", ":tabp<CR>") -- shift-tab
 
 -- clear matches Ctrl+b
 -- c("noremap <C-b> :noh<cr>:call clearmatches()<cr>")
-nmap("<C-b", ":nohl<CR>")
+nmap("<C-b>", ":nohl<CR>")
 
 -- don't copy to clipboard when deleting characters with 'x'
 -- nmap("x", "_x") -- not working, deletes the first line character instead
 
 -- switch from insert mode to normal mode with leader double tap
-imap("jk", "<ESC>")
+imap("jh", "<ESC>")
 
 -- increment / decrement numbers on cursor easier
 nmap("<leader>+", "<C-a>")
@@ -106,6 +109,13 @@ tmap("<C-s>", "<C-\\><C-n>")
 tmap("<Esc><Esc>", "<C-\\><C-n>")
 
 -- PLUGINS
+
+-- neoterm
+
+nmap("<leader>tn", ":Tnew<CR>")
+nmap("<leader>tl", ":<c-u>exec v:count.'Tclear'<CR>")
+nmap("<leader>tt", ":T ")
+nmap("<leader>tg", ":Ttoggle<CR>")
 
 nmap("<F2>", ":NvimTreeToggle<CR>")
 

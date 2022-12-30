@@ -1,6 +1,6 @@
 HOME = os.getenv("HOME")
 
-local o, c = vim.opt, vim.cmd
+local o, c, g = vim.opt, vim.cmd, vim.g
 
 -- basic settings
 o.encoding = "utf-8"
@@ -86,7 +86,7 @@ c([[
 -- Commands mode
 o.wildmenu = true -- on TAB, complete options for system command
 o.wildignore =
-"deps,.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc"
+	"deps,.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc"
 
 -- Only show cursorline in the current window and in normal mode.
 c([[
@@ -102,16 +102,20 @@ c([[
 -- colorscheme
 
 -- default to dark version of selected colorscheme
-o.background = "dark"
+-- o.background = "dark"
 
--- o.aurora_italic = 1
--- o.aurora_transparent = 1
--- o.aurora_bold = 1
--- o.aurora_darker = 1 -- darker background
+-- g.aurora_italic = 1
+-- g.aurora_transparent = 1
+-- g.aurora_bold = 1
+-- g.aurora_darker = 1 -- darker background
+-- c("colorscheme aurora")
 
-c("colorscheme aurora")
+c("colorscheme duskfox")
+
+-- PLUGINS
+
+g.neoterm_default_mod = "botright"
 
 -- vim.g.material_style = "palenight"
 
--- vim.g.python3_host_prog = "/Users/grzegorz/.asdf/shims/python3"
--- vim.g.python_host_prog = "/Users/grzegorz/.asdf/shims/python2"
+g.python3_host_prog = "$HOME/cs/.envs/py/nvim/bin/python"

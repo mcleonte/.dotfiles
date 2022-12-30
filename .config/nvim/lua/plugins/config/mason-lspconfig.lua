@@ -2,7 +2,7 @@ return function()
   require("mason-lspconfig").setup({
     -- lsp servers to automatically install if they are not installed
     ensure_installed = {
-      "sumneko_lua", -- lua
+      -- "sumneko_lua", -- lua
       "dockerls", -- docker
       "jsonls", -- json
       "ltex", -- latex

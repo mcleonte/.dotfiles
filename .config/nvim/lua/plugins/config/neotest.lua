@@ -8,7 +8,7 @@ return function()
           "--log-level",
           "DEBUG",
         },
-        python = "~/cs/.envs/py/nvim/bin/python",
+        python = "/home/leo/cs/.envs/py/nvim/bin/python",
       }),
     },
   })
