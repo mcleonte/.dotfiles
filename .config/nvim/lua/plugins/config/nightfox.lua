@@ -1,103 +1,94 @@
 return function()
-	-- require("notify")("nightfox theme is being set up")
+  local nightfox = require("nightfox")
 
-	local nightfox = require("nightfox")
-	local color = require("nightfox.lib.color")
+  local p = {
+    black = { base = "#24112C", bright = "#843FA2", dim = "#180B1D" },
+    white = { base = "#E5DCC5", bright = "#F2EEE3", dim = "#D9CCAB" },
+    red = { base = "#E2126D", bright = "#EE2F82", dim = "#BD0F5A" },
+    green = { base = "#37FF8B", bright = "#70FFAC", dim = "#00CC55" },
+    blue = { base = "#825CFF", bright = "#A185FF", dim = "#5E2BFF" },
+    yellow = { base = "#FCD581", bright = "#FDE4AF", dim = "#FBCA60" },
+    magenta = { base = "#FF00FF", bright = "#FF5CFF", dim = "#CC00CC" },
+    cyan = { base = "#56CBF9", bright = "#89DAFB", dim = "#3AC2F8" },
+    orange = { base = "#FC6136", bright = "#FC7753", dim = "#FB410E" },
+    pink = { base = "#E952DE", bright = "#EF81E7", dim = "#E538DA" },
+  }
 
-	local p = {
-		black = { base = color.from_hex("#24112C"), bright = "#9E4FBA", dim = "#180B1D" },
-		white = { base = color.from_hex("#E5DCC5"), bright = "#EAEFD3", dim = "#D8C99B" },
-		red = { base = color.from_hex("#EE0000") },
-		green = { base = color.from_hex("#43B929"), bright = "#37FF8B" },
-		blue = { base = color.from_hex("#3F8EFC"), bright = "#87BFFF", dim = "#2667FF" },
-		yellow = { base = color.from_hex("#FFCA3A"), bright = "#FFF689", dim = "#E9B872" },
-		magenta = { base = color.from_hex("#F433AB") },
-		cyan = { base = color.from_hex("#14BDEB") },
-		orange = { base = color.from_hex("#FA7921"), bright = "#EF7B45", dim = "#D84727" },
-		pink = { base = color.from_hex("#E952DE"), bright = "#FFA0FD", dim = "#AA4465" },
-	}
-	local dim_diff = 10
-	local bright_diff = 10
+  p.comment = p.black.bright -- Comment color
 
-	for k, v in pairs(p) do
-		--p[k][1] = v[1]:rotate(282):saturate(44):lighten(12)
-		if not p[k].bright then
-			p[k].bright = v.base:lighten(bright_diff):to_css()
-		end
-		if not p[k].dim then
-			p[k].dim = v.base:lighten(-dim_diff):to_css()
-		end
-		p[k].base = v.base:to_css()
-	end
+  p.bg0 = p.black.dim -- Darker bg (status line and float)
+  p.bg1 = p.black.base -- Default bg
+  p.bg2 = p.black.dim -- Lighter bg (colorcolumn folds)
+  p.bg3 = p.black.dim -- Lighter bg (cursor line)
+  p.bg4 = p.black.dim -- Lighter bg (Conceal, border fg)
 
-	p.comment = p.black.bright
-	p.bg0 = p.black.dim
-	p.bg1 = p.black.base
+  p.fg0 = p.white.bright -- Lighter fg
+  p.fg1 = p.white.base -- Default fg
+  p.fg2 = p.white.dim -- Darker fg (status line)
+  p.fg3 = p.white.dim -- Darker fg (line numbers, fold columns)
 
-	p.fg0 = p.white.bright
-	p.fg1 = p.white.base
-	p.fg2 = p.white.dim
-	p.fg3 = p.white.dim
+  p.sel0 = p.black.dim -- Popup bg, visual selection bg
+  p.sel1 = p.black.base -- Popup sel bg, search bg
 
-	nightfox.setup({
-		options = {
-			dim_inactive = false,
-			module_default = true,
-			terminal_colors = true,
-			transparent = false,
-			inverse = {
-				match_paren = true,
-				visual = true,
-				search = true,
-			},
-			styles = {
-				comments = "",
-				conditionals = "italic",
-				constants = "italic",
-				functions = "italic",
-				keywords = "italic",
-				numbers = "",
-				operators = "",
-				strings = "",
-				types = "italic",
-				variables = "",
-			},
-		},
-		palettes = {
-			duskfox = p,
-		},
-		specs = {
-			duskfox = {
-				syntax = {
-					comment = p.black.bright, -- Comments
+  nightfox.setup({
+    options = {
+      dim_inactive = false,
+      module_default = true,
+      terminal_colors = true,
+      transparent = false,
+      inverse = {
+        match_paren = true,
+        visual = true,
+        search = true,
+      },
+      styles = {
+        comments = "",
+        conditionals = "italic",
+        constants = "italic",
+        functions = "italic",
+        keywords = "italic",
+        numbers = "",
+        operators = "",
+        strings = "",
+        types = "italic",
+        variables = "",
+      },
+    },
+    palettes = {
+      duskfox = p,
+    },
+    specs = {
+      duskfox = {
+        syntax = {
+          comment = p.black.bright, -- Comments
 
-					variable = p.white.base, --	Variables
-					statement = p.white.bright, -- Statements
-					field = p.white.dim, -- Field
+          field = p.white.dim, -- Field
+          variable = p.white.base, --	Variables
+          statement = p.white.bright, -- Statements
 
-					builtin0 = p.pink.base, --	Builtin variable
-					builtin1 = p.pink.base, --	Builtin type
-					builtin2 = p.pink.base, --	Builtin const
-					const = p.pink.base, -- Constants, imports and booleans
+          string = p.yellow.base, --	Strings
+          regex = p.yellow.dim, -- Regex
 
-					keyword = p.magenta.base, -- Keywords
-					conditional = p.magenta.base, -- Conditional and loop
-					preproc = p.magenta.base, -- PreProc
+          keyword = p.red.base, -- Keywords
+          conditional = p.red.base, -- Conditional and loop
+          preproc = p.red.dim, -- PreProc
 
-					dep = p.red.dim, -- Deprecated
+          dep = p.red.base, -- Deprecated
 
-					type = p.green.base, -- Types
+          builtin0 = p.blue.bright, --	Builtin variable
+          builtin1 = p.blue.base, --	Builtin type
+          builtin2 = p.blue.dim, --	Builtin const
 
-					func = p.yellow.base, -- Functions and Titles
-					number = p.green.bright, -- Numbers
-					operator = p.pink.base, --	Operators
-					ident = p.blue.dim, -- Identifiers
+          type = p.green.dim, -- Types
+          const = p.green.base, -- Constants, imports and booleans
+          number = p.green.base, -- Numbers
+          func = p.green.base, -- Functions and Titles
+          ident = p.green.base, -- Identifiers
 
-					string = p.yellow.bright, --	Strings
-					bracket = p.green.bright, -- Brackets and Punctuation
-					regex = p.yellow.dim, -- Regex
-				},
-			},
-		},
-	})
+          operator = p.green.base, --	Operators
+          bracket = p.magenta.dim, -- Brackets and Punctuation
+        },
+      },
+    },
+  })
 end
