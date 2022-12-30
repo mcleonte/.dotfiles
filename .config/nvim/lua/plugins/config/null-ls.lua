@@ -9,31 +9,23 @@ return function()
     sources = {
 
       -- python
-      null_ls.builtins.formatting.black,
+      null_ls.builtins.diagnostics.pylint.with({
+        command = "/home/leo/cs/.envs/py/nvim/bin/pylint",
+      }),
+
+      null_ls.builtins.formatting.yapf.with({
+        command = "/home/leo/cs/.envs/py/nvim/bin/yapf",
+        extra_args = {
+          "--style",
+          "yapf",
+        },
+      }),
 
       -- markdown
       null_ls.builtins.formatting.prettier,
 
-      --null_ls.builtins.formatting.autopep8.with({
-      --  args = {
-      --    '--max-line-length',
-      --    '88',
-      --    '--aggressive',
-      --  }
-      --}),
-      --null_ls.builtins.formatting.black.with({
-      --  extra_args = {
-      --    '--line-length',
-      --    '80',
-      --    '--experimental-string-processing',
-      --  },
-      --}),
-
-      -- null_ls.builtins.diagnostics.flake8,
-
-      -- lua -- no need, using sumneko's new lua formatter
+      -- lua
       null_ls.builtins.formatting.stylua,
-      -- null_ls.builtins.diagnostics.luacheck
     },
 
     on_attach = function(client, bufnr)
