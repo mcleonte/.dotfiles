@@ -27,13 +27,10 @@ alias yt='chrome youtube.com'
 alias ytm='chrome music.youtube.com'
 alias dots='/usr/bin/git --git-dir=/home/leo/.dotfiles/ --work-tree=/home/leo'
 alias du='du -sh'
-
-
-
 alias hibernate='systemctl hibernate'
-
+alias pgadmin='source ~/dev/.envs/pgadmin/bin/activate'
+alias dc='docker-compose'
 
 # BEGIN_KITTY_SHELL_INTEGRATION
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # END_KITTY_SHELL_INTEGRATION
-alias pgadmin='source ~/dev/.envs/pgadmin/bin/activate'
