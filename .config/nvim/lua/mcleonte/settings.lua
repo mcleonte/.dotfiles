@@ -76,6 +76,7 @@ o.backupdir = HOME .. "/.vim/tmp/backup//" -- backups
 o.directory = "/.vim/tmp/swap//" -- swap files
 
 c([[
+  au FileType python                  set ts=2 sw=2
   au BufRead,BufNewFile *.md          set ft=md tw=80 syntax=markdown
   au BufRead,BufNewFile *.ppmd        set ft=md tw=80 syntax=markdown
   au BufRead,BufNewFile *.markdown    set ft=md tw=80 syntax=markdown
