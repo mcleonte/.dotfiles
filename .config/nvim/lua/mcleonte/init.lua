@@ -1,6 +1,6 @@
 pcall(require, "impatient")
 require("plugins")
-require("mcleonte.settings")
 require("mcleonte.mappings")
+require("mcleonte.settings")
 require("mcleonte.autocompletion")
 require("mcleonte.autocommands")
