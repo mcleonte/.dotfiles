@@ -3,3 +3,6 @@
 [user]
 	email = costin.leonte@gmail.com
 	name = Mihail Costin Leonte
+[core]
+	autocrlf = false
+	editor = nvim
