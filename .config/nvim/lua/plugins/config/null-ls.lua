@@ -15,10 +15,6 @@ return function()
 
       null_ls.builtins.formatting.yapf.with({
         command = "/home/leo/cs/.envs/py/nvim/bin/yapf",
-        extra_args = {
-          "--style",
-          "yapf",
-        },
       }),
 
       -- markdown
