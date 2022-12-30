@@ -30,7 +30,11 @@ alias du='du -sh'
 alias hibernate='systemctl hibernate'
 alias pgadmin='source ~/dev/.envs/pgadmin/bin/activate'
 alias dc='docker-compose'
+alias s0='shutdown 0'
 
 # BEGIN_KITTY_SHELL_INTEGRATION
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # END_KITTY_SHELL_INTEGRATION
+
+# Created by `pipx` on 2022-06-10 18:51:22
+export PATH="$PATH:/home/leo/.local/bin"
