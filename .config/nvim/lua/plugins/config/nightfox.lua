@@ -88,6 +88,13 @@ return function()
           operator = p.green.base, --	Operators
           bracket = p.magenta.dim, -- Brackets and Punctuation
         },
+        git = {
+          add = p.green.base,
+          removed = p.magenta.base,
+          changed = p.yellow.base,
+          conflict = p.red.base,
+          ignored = p.black.bright,
+        },
       },
     },
   })
