@@ -1,27 +1,27 @@
 local g, c, a = vim.g, vim.cmd, vim.api
 
 local function map(mode, shortcut, command)
-	a.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
+  a.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
 end
 
 local function nmap(shortcut, command)
-	map("n", shortcut, command)
+  map("n", shortcut, command)
 end
 
 local function imap(shortcut, command)
-	map("i", shortcut, command)
+  map("i", shortcut, command)
 end
 
 local function vmap(shortcut, command)
-	map("v", shortcut, command)
+  map("v", shortcut, command)
 end
 
 local function cmap(shortcut, command)
-	map("c", shortcut, command)
+  map("c", shortcut, command)
 end
 
 local function tmap(shortcut, command)
-	map("t", shortcut, command)
+  map("t", shortcut, command)
 end
 
 -- sane regexes
@@ -137,3 +137,28 @@ nmap("<F4>", ":MarkdownPreviewToggle<CR>")
 
 -- git
 nmap("<C-g>", "<cmd>GitMessenger<cr>")
+
+-- debugging
+local keymap = vim.keymap
+
+local keys = {
+    ["db"] = { "toggle_breakpoint", "Toggle breakpoint" },
+    ["dB"] = { "step_back", "Step back" },
+    ["dc"] = { "continue", "Continue" },
+    ["dC"] = { "run_to_cursor", "Run to cursor" },
+    ["dd"] = { "disconnect", "Disconnect" },
+    ["dS"] = { "session", "Session" },
+    ["di"] = { "step_into", "Setep into" },
+    ["do"] = { "step_over", "Step over" },
+    ["du"] = { "step_out", "Step out" },
+    ["dp"] = { "pause.toggle", "Pause toggle" },
+    ["dr"] = { "repl.toggle", "REPL toggle" },
+    ["ds"] = { "continue", "Continue" },
+    ["dq"] = { "close", "Close" },
+}
+
+for k, v in pairs(keys) do
+    keymap.set("n", "<leader>" .. k, function()
+        return require("dap")[v[1]]()
+    end, { desc = v[2] })
+end
