@@ -1,5 +1,3 @@
-return {
-    config = function()
-        require("scope").setup {}
-    end,
-}
+return function()
+	require("scope").setup({})
+end

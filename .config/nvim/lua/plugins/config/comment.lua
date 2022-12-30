@@ -1,5 +1,3 @@
-return {
-    config = function()
-        require("Comment").setup()
-    end,
-}
+return function()
+	require("Comment").setup()
+end

@@ -1,6 +1,3 @@
-return{
-  config = function()
-    require("mason").setup({
-    })
-  end
-}
+return function()
+  require("mason").setup({})
+end

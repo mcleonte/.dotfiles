@@ -1,84 +1,119 @@
-vim.cmd('noremap <C-b> :noh<cr>:call clearmatches()<cr>') -- clear matches Ctrl+b
+local g, c, a = vim.g, vim.cmd, vim.api
 
-function map(mode, shortcut, command)
-  vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
+local function map(mode, shortcut, command)
+	a.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
 end
 
-function nmap(shortcut, command)
-  map('n', shortcut, command)
+local function nmap(shortcut, command)
+	map("n", shortcut, command)
 end
 
-function imap(shortcut, command)
-  map('i', shortcut, command)
+local function imap(shortcut, command)
+	map("i", shortcut, command)
 end
 
-function vmap(shortcut, command)
-  map('v', shortcut, command)
+local function vmap(shortcut, command)
+	map("v", shortcut, command)
 end
 
-function cmap(shortcut, command)
-  map('c', shortcut, command)
+local function cmap(shortcut, command)
+	map("c", shortcut, command)
 end
 
-function tmap(shortcut, command)
-  map('t', shortcut, command)
+local function tmap(shortcut, command)
+	map("t", shortcut, command)
 end
 
 -- sane regexes
 -- nmap('/', '/\\v')
 -- vmap('/', '/\\v')
 
+g.mapleader = " "
+-- g.maplocalleader = '\\'
+
+-- Window (/buffer) spliting
+nmap("vv", "<C-w>v") -- split window vertically
+nmap("ss", "<C-w>s") -- split window horizontally
+nmap("<leader>se", "C-w>=") -- equalize width of split windows
+nmap("<leader>w", ":close<CR>") -- close current split window
+
+-- Window (/buffer) navigation
+nmap("<C-h>", "<C-w>h")
+nmap("<C-j>", "<C-w>j")
+nmap("<C-k>", "<C-w>k")
+nmap("<C-l>", "<C-w>l")
+
+-- Tabs
+nmap("<C-t>", ":tabnew<CR>")
+nmap("<C-w>", ":tabclose<CR>")
+nmap("<C-i>", ":tabn<CR>") -- tab
+nmap("<S-Tab>", ":tabp<CR>") -- shift-tab
+
+-- clear matches Ctrl+b
+-- c("noremap <C-b> :noh<cr>:call clearmatches()<cr>")
+nmap("<C-b", ":nohl<CR>")
+
+-- don't copy to clipboard when deleting characters with 'x'
+-- nmap("x", "_x") -- not working, deletes the first line character instead
+
+-- switch from insert mode to normal mode with leader double tap
+imap("jk", "<ESC>")
+
+-- increment / decrement numbers on cursor easier
+nmap("<leader>+", "<C-a>")
+nmap("<leader>-", "<C-x>")
+
+-- in visual mode, enter select mode by pressing "v" again
+vmap("v", "<C-g>")
+
 -- don't jump when using *
-nmap('*', '*<c-o>')
+nmap("*", "*<c-o>")
 
 -- keep search matches in the middle of the window
-nmap('n', 'nzzzv')
-nmap('N', 'Nzzzv')
+nmap("n", "nzzzv")
+nmap("N", "Nzzzv")
 
 -- Same when jumping around
-nmap('g;', 'g;zz')
+nmap("g;", "g;zz")
 --nmap('g', 'g,zz') -- for some reason doesn't work well
 
 -- Open a Quickfix window for the last search.
 nmap("<leader>?", ":execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>")
 
 -- Begining & End of line in Normal mode
-nmap('H', '^')
-nmap('L', 'g_')
-nmap('K', 'gg')
-nmap('J', 'G')
+nmap("H", "^")
+nmap("L", "g_")
+nmap("K", "gg")
+nmap("J", "G")
 
 -- more natural movement with wrap on
-nmap('j', 'gj')
-nmap('k', 'gk')
-vmap('j', 'gj')
-vmap('k', 'gk')
-
--- Easy buffer navigation
-nmap('<C-h>', '<C-w>h')
-nmap('<C-j>', '<C-w>j')
-nmap('<C-k>', '<C-w>k')
-nmap('<C-l>', '<C-w>l')
+nmap("j", "gj")
+nmap("k", "gk")
+vmap("j", "gj")
+vmap("k", "gk")
 
 -- Reselect visual block after indent/outdent
-vmap('<', '<gv')
-vmap('>', '>gv')
+vmap("<", "<gv")
+vmap(">", ">gv")
 
 -- home and end line in command mode
-cmap('<C-a>', '<Home>') cmap('<C-e>', '<End>')
+cmap("<C-a>", "<Home>")
+cmap("<C-e>", "<End>")
 
 -- Terminal
 -- ESC to go to normal mode in terminal
-tmap('<C-s>', '<C-\\><C-n>')
-tmap('<Esc><Esc>', '<C-\\><C-n>')
-
--- Easy window split; C-w v -> vv, C-w - s -> ss
-nmap('vv', '<C-w>v')
-nmap('ss', '<C-w>s')
-vim.o.splitbelow = true -- when splitting horizontally, move coursor to lower pane
-vim.o.splitright = true -- when splitting vertically, mnove coursor to right pane
+tmap("<C-s>", "<C-\\><C-n>")
+tmap("<Esc><Esc>", "<C-\\><C-n>")
 
 -- PLUGINS
+
+nmap("<F2>", ":NvimTreeToggle<CR>")
+
+-- vim-maximizer
+nmap("<F11>", ":MaximizerToggle<CR>")
+
+-- session-lens
+nmap("<leader>ss", ":SearchSession<CR>")
 
 -- Find files using Telescope command-line sugar.
 nmap("<C-p>", "<cmd>Telescope find_files<cr>")
@@ -93,7 +128,7 @@ nmap("<leader>hh", "<cmd>Telescope help_tags<cr>")
 -- nmap('<C-e>', '<cmd>Lspsaga show_line_diagnostics<CR>')
 
 -- Markdown Preview
-nmap("<F4>",":MarkdownPreviewToggle<CR>")
+nmap("<F4>", ":MarkdownPreviewToggle<CR>")
 
 -- git
-nmap('<C-g>', '<cmd>GitMessenger<cr>')
+nmap("<C-g>", "<cmd>GitMessenger<cr>")

@@ -1,5 +1,3 @@
-return {
-    config = function()
-        require("stabilize").setup()
-    end,
-}
+return function()
+	require("stabilize").setup()
+end

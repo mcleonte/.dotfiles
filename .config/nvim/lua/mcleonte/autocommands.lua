@@ -9,7 +9,12 @@ c [[
 ]]
 
 -- Save and load buffer folds when leaving and entering window
+-- c([[
+--   au BufWinLeave *.{py,lua} mkview
+--   au BufWinEnter *.{py,lua} silent! loadview
+-- ]])
+
 c([[
-  au BufWinLeave *.{py,lua} mkview
-  au BufWinEnter *.{py,lua} silent! loadview
+  au BufEnter <buffer> exec "normal! i"
+  au BufWinLeave term://* stopinsert
 ]])

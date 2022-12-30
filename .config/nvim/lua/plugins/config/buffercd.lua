@@ -1,5 +1,3 @@
-return {
-    config = function()
-        require("buffercd").setup {}
-    end,
-}
+return function()
+	require("buffercd").setup({})
+end
