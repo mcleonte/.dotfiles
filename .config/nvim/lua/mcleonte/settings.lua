@@ -61,7 +61,8 @@ o.hlsearch = true
 o.autoindent = true
 o.smartindent = true
 o.tabstop = 2 -- 1 tab = 2 spaces
-o.shiftwidth = 2 -- indentation rule
+-- indentation rule
+o.shiftwidth = 2
 o.formatoptions = "tcr" -- q  - comment formatting; n - numbered lists; j - remove comment when joining lines; 1 - don't break after one-letter word
 o.expandtab = true -- expand tab to spaces
 o.eol = true
@@ -75,7 +76,6 @@ o.backupdir = HOME .. "/.vim/tmp/backup//" -- backups
 o.directory = "/.vim/tmp/swap//" -- swap files
 
 c([[
-  au FileType python                  set ts=4 sw=4
   au BufRead,BufNewFile *.md          set ft=md tw=80 syntax=markdown
   au BufRead,BufNewFile *.ppmd        set ft=md tw=80 syntax=markdown
   au BufRead,BufNewFile *.markdown    set ft=md tw=80 syntax=markdown
@@ -85,7 +85,7 @@ c([[
 -- Commands mode
 o.wildmenu = true -- on TAB, complete options for system command
 o.wildignore =
-	"deps,.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc"
+"deps,.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc"
 
 -- Only show cursorline in the current window and in normal mode.
 c([[
@@ -98,8 +98,17 @@ c([[
   augroup END
 ]])
 
+-- colorscheme
+
 -- default to dark version of selected colorscheme
 o.background = "dark"
+
+-- o.aurora_italic = 1
+-- o.aurora_transparent = 1
+-- o.aurora_bold = 1
+-- o.aurora_darker = 1 -- darker background
+
+c("colorscheme aurora")
 
 -- vim.g.material_style = "palenight"
 
