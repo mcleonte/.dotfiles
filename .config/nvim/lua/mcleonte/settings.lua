@@ -42,7 +42,8 @@ o.eol = false -- show if there's no eol char
 o.showbreak = '↪' -- character to show when line is broken
 
 -- Sidebar
-o.relativenumber = true -- line number on the left
+o.relativenumber = true -- show relative line number to curent line on the left
+o.number = true -- show absolute line number of curent line on the left
 o.numberwidth = 3 -- always reserve 3 spaces for line number
 o.signcolumn = 'number' -- keep 1 column for coc.vim  check
 o.modelines = 0
