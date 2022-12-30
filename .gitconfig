@@ -1,7 +1,7 @@
 [init]
 	defaultBranch = main
 [user]
-	email = costin.leonte@gmail.com
+	email = git@mcleonte.com
 	name = Mihail Costin Leonte
 [core]
 	autocrlf = false
