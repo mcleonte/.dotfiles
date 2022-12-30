@@ -87,15 +87,15 @@ keys = [
     Key([mod], "F5", lazy.spawn("google-chrome-stable --app=https://www.netflix.com")),
 
 
-    Key([mod], "n", lazy.to_screen(2)),
-    Key([mod], "m", lazy.to_screen(0)),
-    Key([mod], "comma", lazy.to_screen(1)),
-    Key([mod], "period", lazy.to_screen(3)),
+    Key([mod], "n", lazy.to_screen(3)), # 3
+    Key([mod], "m", lazy.to_screen(1)), # 1
+    Key([mod], "comma", lazy.to_screen(0)), # 0
+    Key([mod], "period", lazy.to_screen(2)), # 2
 
-    Key([mod, "shift"], "n", lazy.window.toscreen(2), lazy.to_screen(2)),
-    Key([mod, "shift"], "m", lazy.window.toscreen(0), lazy.to_screen(0)),
-    Key([mod, "shift"], "comma", lazy.window.toscreen(1), lazy.to_screen(1)),
-    Key([mod, "shift"], "period", lazy.window.toscreen(3), lazy.to_screen(3)),
+    Key([mod, "shift"], "n", lazy.window.toscreen(3), lazy.to_screen(3)), # 3
+    Key([mod, "shift"], "m", lazy.window.toscreen(1), lazy.to_screen(1)), # 1
+    Key([mod, "shift"], "comma", lazy.window.toscreen(0), lazy.to_screen(0)), # 0
+    Key([mod, "shift"], "period", lazy.window.toscreen(2), lazy.to_screen(2)), # 2
 
     Key([mod], "f", lazy.window.toggle_floating())
 ]
