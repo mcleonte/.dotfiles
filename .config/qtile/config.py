@@ -97,7 +97,9 @@ keys = [
     Key([mod, "shift"], "comma", lazy.window.toscreen(0), lazy.to_screen(0)), # 0
     Key([mod, "shift"], "period", lazy.window.toscreen(2), lazy.to_screen(2)), # 2
 
-    Key([mod], "f", lazy.window.toggle_floating())
+    Key([mod], "f", lazy.window.toggle_floating()),
+
+    Key([], "Print", lazy.spawn("flameshot gui")),
 ]
 
 groups = [Group(i) for i in "123456789"]
