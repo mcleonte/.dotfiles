@@ -90,10 +90,12 @@ keys = [
     Key([mod], "n", lazy.to_screen(2)),
     Key([mod], "m", lazy.to_screen(0)),
     Key([mod], "comma", lazy.to_screen(1)),
+    Key([mod], "period", lazy.to_screen(3)),
 
     Key([mod, "shift"], "n", lazy.window.toscreen(2), lazy.to_screen(2)),
     Key([mod, "shift"], "m", lazy.window.toscreen(0), lazy.to_screen(0)),
     Key([mod, "shift"], "comma", lazy.window.toscreen(1), lazy.to_screen(1)),
+    Key([mod, "shift"], "period", lazy.window.toscreen(3), lazy.to_screen(3)),
 
     Key([mod], "f", lazy.window.toggle_floating())
 ]
@@ -117,7 +119,7 @@ for i in groups:
 
 layouts = [
     layout.Columns(border_focus='magenta',
-                   border_normal='purple',
+                   border_normal='royalblue',
                    num_columns=3,
                    margin=8,
                    border_width=3),
@@ -164,6 +166,16 @@ screens = [
             ],
             24,
         ),
+    ),
+    Screen(
+        top=bar.Bar(
+            [
+                widget.CurrentLayout(),
+                widget.GroupBox(),
+                widget.WindowName()
+            ],
+            24
+        )
     ),
     Screen(
         top=bar.Bar(
