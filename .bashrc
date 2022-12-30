@@ -14,7 +14,7 @@ if [ -f '/home/leo/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/h
 
 PS1='[\u@\h \W]\$ '
 
-alias ls='ls --color=auto'
+alias ls='ls -l --color=auto'
 alias chrome='google-chrome-stable'
 alias bnet='bash ~/shortcuts/bnet.sh'
 alias vim='nvim'
