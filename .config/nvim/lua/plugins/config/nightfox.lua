@@ -115,5 +115,12 @@ return function()
         },
       },
     },
+    groups = {
+      duskfox = {
+        DapBreakpoint = { fg = p.red.base },
+        DapBreakpointCondition = { fg = p.orange.base },
+        DapLogPoint = { fg = p.white.base },
+      },
+    },
   })
 end

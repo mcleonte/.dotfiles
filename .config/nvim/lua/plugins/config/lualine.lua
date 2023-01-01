@@ -10,9 +10,12 @@ return function()
 			section_separators = { left = "", right = "" },
 			component_separators = { left = "", right = "" },
 			globalstatus = true,
+			refresh = {
+				statusline = 200,
+			},
 		},
 		sections = {
-			lualine_a = { { "mode", upper = false } },
+			lualine_a = { { "mode", upper = false }, "g:active_layers" },
 			lualine_b = { { "branch", icon = "" }, "diff", "diagnostics" },
 			lualine_c = { { "filename", path = 1, file_status = false, shorting_target = 0 } },
 			lualine_x = { "encoding", "fileformat", "filetype" },

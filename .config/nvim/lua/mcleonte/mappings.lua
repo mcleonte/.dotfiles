@@ -151,21 +151,11 @@ local dap_python = require("dap-python")
 local dapui = require("dapui")
 
 local dap_keys = {
-  ["<leader>db"] = { "toggle_breakpoint", "DAP | Toggle breakpoint" },
 
-  ["<leader>dc"] = { "continue", "DAP | Continue" },
   ["<leader>dC"] = { "run_to_cursor", "DAP | Run to cursor" },
-  ["<leader>dd"] = { "disconnect", "DAP | Disconnect" },
-  ["<leader>dS"] = { "session", "DAP | Session" },
-
-  ["<leader>di"] = { "step_into", "DAP | Step into" },
-  ["<leader>do"] = { "step_over", "DAP | Step over" },
-  ["<leader>du"] = { "step_out", "DAP | Step out" },
-  ["<leader>dB"] = { "step_back", "DAP | Step back" },
 
   ["<leader>dp"] = { "pause.toggle", "DAP | Pause toggle" },
   ["<leader>dr"] = { "repl.toggle", "DAP | REPL toggle" },
-  ["<leader>dq"] = { "close", "DAP | Close" },
 }
 
 for k, v in pairs(dap_keys) do
@@ -174,34 +164,100 @@ for k, v in pairs(dap_keys) do
   end, v[2])
 end
 
-nmap("<leader>dc", function()
-  return dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
-end, "DAP | Set conditional breakpoint")
+-- debugging mode / layer
 
-nmap("<leader>dl", function()
-  return dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-end, "DAP | Set log point")
+local function char(val)
+  return vim.api.nvim_replace_termcodes(val, true, true, true)
+end
 
-nmap("<leader>tf", function()
-  return dap_python.test_method()
-end, "Test closest method / function")
+local function cmd(command)
+  return function()
+    a.nvim_command(command)
+  end
+end
+
+local debug_layer = libmodal.layer.new({
+  n = {
+    -- ["B"] = { rhs = cmd(":exe bufwinnr('DAP Breakpoints') .. ' wincmd w'") },
+    -- ["w"] = cmd(":exe bufwinnr('DAP Stacks') .. ' wincmd w'"),
+    ["b"] = {
+      rhs = dap.toggle_breakpoint,
+      desc = "DAP | Toggle [b]reakpoint",
+    },
+    ["n"] = {
+      rhs = function()
+        return dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+      end,
+      desc = "DAP | Set co[n]ditional breakpoint",
+    },
+    ["m"] = {
+      rhs = function()
+        return dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+      end,
+      desc = "DAP | Set log point [m]essage",
+    },
+    ["u"] = {
+      rhs = dap.step_out,
+      desc = "DAP | Step o[u]t",
+    },
+    -- not supported
+    -- ["y"] = {
+    --   rhs = dap.reverse_continue,
+    --   desc = "DAP | Revere continue",
+    -- },
+    ["i"] = {
+      rhs = dap.step_into,
+      desc = "DAP | Step [i]nto",
+    },
+    ["o"] = {
+      rhs = dap.step_over,
+      desc = "DAP | Step [o]ver",
+    },
+    ["g"] = {
+      rhs = dap.continue,
+      desc = "DAP | Continue ( [G]o )",
+    },
+    ["D"] = {
+      rhs = dap.disconnect,
+      desc = "DAP | [D]isconnect",
+    },
+    ["w"] = {
+      rhs = cmd(":exe bufwinnr('DAP Watches') .. ' wincmd w'"),
+      desc = "DAP | Switch to DAP [W]atches window",
+    },
+    ["c"] = {
+      rhs = cmd(":exe bufwinnr('DAP Scopes') .. ' wincmd w'"),
+      desc = "DAP | Switch to DAP S[c]opes window",
+    },
+    ["r"] = {
+      rhs = cmd(":exe bufwinnr('dap-repl') .. ' wincmd w'"),
+      desc = "DAP | Switch to DAP [R]epl window",
+    },
+    ["t"] = {
+      rhs = dap_python.test_method,
+      desc = "DAP | [T]est closest method / function",
+    },
+    ["q"] = {
+      rhs = dap.close,
+      desc = "DAP | Close ( [Q]uit )",
+    },
+    ["R"] = {
+      rhs = dap.repl.toggle,
+      desc = "DAP | REPL toggle",
+    },
+  },
+})
 
 nmap("<F5>", function()
-  return dapui.toggle()
-end, "DAPUI | toggle side panel")
-
--- debugging mode
-
-local mappings = {
-  ["<F7>"] = function()
-    a.nvim_command("require('dapui').toggle()")
-    --return dapui.toggle()
-  end,
-}
-
-nmap("<F6>", function()
-  libmodal.mode.enter("DEBUG", mappings)
-end, "Enter debugmode")
+  dapui.toggle()
+  if debug_layer:is_active() then
+    debug_layer:exit()
+    g.active_layers = ""
+  else
+    debug_layer:enter()
+    g.active_layers = "DEBUG"
+  end
+end, "Toggle custom DEBUG layer")
 
 -- lsp
 -- See `:help vim.lsp.*` for documentation on any of the below functions

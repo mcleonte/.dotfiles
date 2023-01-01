@@ -14,7 +14,8 @@ o.mouse = "nv" -- enable mouse for normal and visual mode
 o.clipboard = "unnamedplus" -- use system clipboard
 
 -- Mapping waiting time
-o.timeout = false
+o.timeout = true
+o.timeoutlen = 150
 o.ttimeout = true
 o.ttimeoutlen = 100
 
@@ -86,7 +87,7 @@ c([[
 -- Commands mode
 o.wildmenu = true -- on TAB, complete options for system command
 o.wildignore =
-	"deps,.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc"
+"deps,.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc"
 
 -- Only show cursorline in the current window and in normal mode.
 c([[
