@@ -3,30 +3,30 @@ local g, c, a = vim.g, vim.cmd, vim.api
 local nvim_command = vim.api.nvim_command
 
 local function map(mode, shortcut, command, desc)
-  if not desc then
-    desc = ""
-  end
-  vim.keymap.set(mode, shortcut, command, { desc = desc })
+	if not desc then
+		desc = ""
+	end
+	vim.keymap.set(mode, shortcut, command, { desc = desc })
 end
 
 local function nmap(shortcut, command, desc)
-  map("n", shortcut, command, desc)
+	map("n", shortcut, command, desc)
 end
 
 local function imap(shortcut, command, desc)
-  map("i", shortcut, command, desc)
+	map("i", shortcut, command, desc)
 end
 
 local function vmap(shortcut, command, desc)
-  map("v", shortcut, command, desc)
+	map("v", shortcut, command, desc)
 end
 
 local function cmap(shortcut, command, desc)
-  map("c", shortcut, command, desc)
+	map("c", shortcut, command, desc)
 end
 
 local function tmap(shortcut, command, desc)
-  map("t", shortcut, command, desc)
+	map("t", shortcut, command, desc)
 end
 
 -- sane regexes
@@ -159,67 +159,67 @@ local dapui = require("dapui")
 local dap_ui_widgets = require("dap.ui.widgets")
 
 local debug_layer = {
-  n = {
-    -- ["B"] = { rhs = cmd(":exe bufwinnr('DAP Breakpoints') .. ' wincmd w'") },
-    -- ["w"] = cmd(":exe bufwinnr('DAP Stacks') .. ' wincmd w'"),
-    ["b"] = { dap.toggle_breakpoint, "DAP | Toggle [b]reakpoint" },
-    ["n"] = {
-      function()
-        return dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
-      end,
-      "DAP | Set co[n]ditional breakpoint",
-    },
-    ["m"] = {
-      function()
-        return dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-      end,
-      "DAP | Set log point [m]essage",
-    },
-    ["u"] = { dap.step_out, "DAP | Step o[u]t" },
-    ["i"] = { dap.step_into, "DAP | Step [i]nto" },
-    ["o"] = { dap.step_over, "DAP | Step [o]ver" },
-    ["p"] = { dap.run_to_cursor, "DAP | Run to cursor" },
-    ["g"] = { dap.continue, "DAP | Continue ( [G]o )" },
-    ["D"] = { dap.disconnect, "DAP | [D]isconnect" },
-    ["w"] = {
-      function()
-        nvim_command(":exe bufwinnr('DAP Watches') .. ' wincmd w'")
-      end,
-      "DAP | Switch to DAP [W]atches window",
-    },
-    ["c"] = {
-      function()
-        nvim_command(":exe bufwinnr('DAP Scopes') .. ' wincmd w'")
-      end,
-      "DAP | Switch to DAP S[c]opes window",
-    },
-    ["r"] = {
-      function()
-        nvim_command(":exe bufwinnr('dap-repl') .. ' wincmd w'")
-      end,
-      "DAP | Switch to DAP [R]epl window",
-    },
-    ["t"] = { dap_python.test_method, "DAP | [T]est closest method / function" },
-    ["q"] = { dap.close, "DAP | Close ( [Q]uit )" },
-    ["R"] = { dap.repl.toggle, "DAP | REPL toggle" },
-    ["v"] = { dap_ui_widgets.hover, "DAP | View [v]alue of expression at cursor expression" },
-  },
+	n = {
+		-- ["B"] = { rhs = cmd(":exe bufwinnr('DAP Breakpoints') .. ' wincmd w'") },
+		-- ["w"] = cmd(":exe bufwinnr('DAP Stacks') .. ' wincmd w'"),
+		["b"] = { dap.toggle_breakpoint, "DAP | Toggle [b]reakpoint" },
+		["n"] = {
+			function()
+				return dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+			end,
+			"DAP | Set co[n]ditional breakpoint",
+		},
+		["m"] = {
+			function()
+				return dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+			end,
+			"DAP | Set log point [m]essage",
+		},
+		["u"] = { dap.step_out, "DAP | Step o[u]t" },
+		["i"] = { dap.step_into, "DAP | Step [i]nto" },
+		["o"] = { dap.step_over, "DAP | Step [o]ver" },
+		["p"] = { dap.run_to_cursor, "DAP | Run to cursor" },
+		["g"] = { dap.continue, "DAP | Continue ( [G]o )" },
+		["D"] = { dap.disconnect, "DAP | [D]isconnect" },
+		["w"] = {
+			function()
+				nvim_command(":exe bufwinnr('DAP Watches') .. ' wincmd w'")
+			end,
+			"DAP | Switch to DAP [W]atches window",
+		},
+		["c"] = {
+			function()
+				nvim_command(":exe bufwinnr('DAP Scopes') .. ' wincmd w'")
+			end,
+			"DAP | Switch to DAP S[c]opes window",
+		},
+		["r"] = {
+			function()
+				nvim_command(":exe bufwinnr('dap-repl') .. ' wincmd w'")
+			end,
+			"DAP | Switch to DAP [R]epl window",
+		},
+		["t"] = { dap_python.test_method, "DAP | [T]est closest method / function" },
+		["q"] = { dap.close, "DAP | Close ( [Q]uit )" },
+		["R"] = { dap.repl.toggle, "DAP | REPL toggle" },
+		["v"] = { dap_ui_widgets.hover, "DAP | View [v]alue of expression at cursor expression" },
+	},
 }
 
 for k, v in pairs(debug_layer.n) do
-  debug_layer.n[k] = { rhs = v[1], desc = v[2] }
+	debug_layer.n[k] = { rhs = v[1], desc = v[2] }
 end
 debug_layer = libmodal.layer.new(debug_layer)
 
 nmap("<F5>", function()
-  dapui.toggle()
-  if debug_layer:is_active() then
-    debug_layer:exit()
-    g.active_layers = ""
-  else
-    debug_layer:enter()
-    g.active_layers = "DEBUG"
-  end
+	dapui.toggle()
+	if debug_layer:is_active() then
+		debug_layer:exit()
+		g.active_layers = ""
+	else
+		debug_layer:enter()
+		g.active_layers = "DEBUG"
+	end
 end, "Toggle custom DEBUG layer")
 
 -- lsp
@@ -232,14 +232,14 @@ nmap("<leader>sh", vim.lsp.buf.signature_help, "LSP | Signature Help")
 nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "LSP | Add Workspace Folder")
 nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "LSP | Remove Workspace Folder")
 nmap("<leader>wl", function()
-  print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 end, "LSP | List Workspace Folders")
 nmap("<leader>D", vim.lsp.buf.type_definition, "LSP | Go to type definition")
 nmap("<leader>rn", vim.lsp.buf.rename, "LSP | Rename")
 nmap("<leader>ca", vim.lsp.buf.code_action, "LSP | code action")
 nmap("gr", vim.lsp.buf.references)
 nmap("<leader>f", function()
-  vim.lsp.buf.format({ async = true })
+	vim.lsp.buf.format({ async = true })
 end)
 
 -- Telescope
