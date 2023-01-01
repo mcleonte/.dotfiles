@@ -45,8 +45,8 @@ o.colorcolumn = "80"
 -- Sidebar
 o.relativenumber = true -- show relative line number to curent line on the left
 o.number = true -- show absolute line number of curent line on the left
-o.numberwidth = 3 -- always reserve 3 spaces for line number
-o.signcolumn = "auto" -- keep 1 column for coc.vim  check
+o.numberwidth = 4 -- always reserve 3 spaces for line number
+o.signcolumn = "number" -- keep 1 column for coc.vim  check
 o.modelines = 0
 o.showcmd = true -- display command in bottom bar
 
