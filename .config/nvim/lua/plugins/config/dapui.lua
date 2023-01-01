@@ -1,5 +1,3 @@
-local sign_define = vim.fn.sign_define
-
 return function()
   local dapui = require("dapui")
 
@@ -35,7 +33,7 @@ return function()
     },
   })
 
-  sign_define("DapBreakpoint", { text = "", texthl = "DapBreakpoint" })
-  sign_define("DapBreakpointCondition", { text = "", texthl = "DapBreakpointCondition" })
-  sign_define("DapLogPoint", { text = "", texthl = "DapLogPoint" })
+  vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DapBreakpoint" })
+  vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "DapBreakpointCondition" })
+  vim.fn.sign_define("DapLogPoint", { text = "", texthl = "DapLogPoint" })
 end
