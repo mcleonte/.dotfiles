@@ -23,3 +23,4 @@ if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integr
 
 # Created by `pipx` on 2022-06-10 18:51:22
 export PATH="$PATH:/home/leo/.local/bin"
+alias td="~/cs/prj/todo-cmd/todo.py"
