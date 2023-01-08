@@ -242,6 +242,7 @@ nmap("<leader>f", function()
 	vim.lsp.buf.format({ async = true })
 end)
 
+imap("<F1>", vim.lsp.buf.completion)
 -- Telescope
 local tsb = require("telescope.builtin")
 vmap("<leader>tc", "<cmd>Telescope commands<cr>", "Show Commands")
