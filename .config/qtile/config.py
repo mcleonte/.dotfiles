@@ -37,9 +37,9 @@ terminal = guess_terminal()
 keys = [
     # Switch between windows
     Key([mod], "n", lazy.layout.left(), desc="Move focus to left"),
-    Key([mod], "e", lazy.layout.right(), desc="Move focus to right"),
-    Key([mod], "i", lazy.layout.down(), desc="Move focus down"),
-    Key([mod], "o", lazy.layout.up(), desc="Move focus up"),
+    Key([mod], "o", lazy.layout.right(), desc="Move focus to right"),
+    Key([mod], "e", lazy.layout.down(), desc="Move focus down"),
+    Key([mod], "i", lazy.layout.up(), desc="Move focus up"),
     Key([mod], "space", lazy.layout.next(),
         desc="Move window focus to other window"),
 
@@ -47,21 +47,21 @@ keys = [
     # Moving out of range in Columns layout will create new column.
     Key([mod, "shift"], "n", lazy.layout.shuffle_left(),
         desc="Move window to the left"),
-    Key([mod, "shift"], "e", lazy.layout.shuffle_right(),
+    Key([mod, "shift"], "o", lazy.layout.shuffle_right(),
         desc="Move window to the right"),
-    Key([mod, "shift"], "i", lazy.layout.shuffle_down(),
+    Key([mod, "shift"], "e", lazy.layout.shuffle_down(),
         desc="Move window down"),
-    Key([mod, "shift"], "o", lazy.layout.shuffle_up(), desc="Move window up"),
+    Key([mod, "shift"], "i", lazy.layout.shuffle_up(), desc="Move window up"),
 
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
     Key([mod, "control"], "n", lazy.layout.grow_left(),
         desc="Grow window to the left"),
-    Key([mod, "control"], "e", lazy.layout.grow_right(),
+    Key([mod, "control"], "o", lazy.layout.grow_right(),
         desc="Grow window to the right"),
-    Key([mod, "control"], "i", lazy.layout.grow_down(),
+    Key([mod, "control"], "e", lazy.layout.grow_down(),
         desc="Grow window down"),
-    Key([mod, "control"], "o", lazy.layout.grow_up(), desc="Grow window up"),
+    Key([mod, "control"], "i", lazy.layout.grow_up(), desc="Grow window up"),
     # Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
 
     # Toggle between split and unsplit sides of stack.
