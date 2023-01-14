@@ -59,9 +59,6 @@ nmap("<C-b>", ":nohl<CR>")
 -- don't copy to clipboard when deleting characters with 'x'
 -- nmap("x", "_x") -- not working, deletes the first line character instead
 
--- switch from insert mode to normal mode with leader double tap
-imap("jh", "<ESC>", "Normal Mode")
-
 -- increment / decrement numbers on cursor easier
 nmap("<leader>+", "<C-a>")
 nmap("<leader>-", "<C-x>")
