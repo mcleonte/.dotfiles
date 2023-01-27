@@ -93,6 +93,7 @@ keys = [
   Key(hyper, "i", lazy.spawn("google-chrome-stable")),
   Key(hyper, "y", lazy.spawn("google-chrome-stable --app=https://www.youtube.com")),
   Key(hyper, "m", lazy.spawn("google-chrome-stable --app=https://music.youtube.com")),
+  Key(hyper, "g", lazy.spawn("google-chrome-stable --app=https://chat.openai.com/chat")),
   Key(hyper, "b", lazy.spawn("blueman-manager")),
   Key(hyper, "p", lazy.spawn("pavucontrol")),
   Key(hyper, "v", lazy.spawn("nvidia-settings")),
