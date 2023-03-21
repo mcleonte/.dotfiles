@@ -90,6 +90,7 @@ keys = [
 
   Key(hyper, "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
   Key(hyper, "t", lazy.spawn(terminal), desc="Launch terminal"),
+  Key(hyper, "e", lazy.spawn("microsoft-edge-stable")),
   Key(hyper, "i", lazy.spawn("google-chrome-stable")),
   Key(hyper, "y", lazy.spawn("google-chrome-stable --app=https://www.youtube.com")),
   Key(hyper, "m", lazy.spawn("google-chrome-stable --app=https://music.youtube.com")),
