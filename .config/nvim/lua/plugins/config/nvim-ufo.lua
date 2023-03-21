@@ -11,7 +11,7 @@ return function()
 	}
 	local language_servers = {
 		"jedi_language_server",
-		"sumneko_lua",
+		-- "lua_ls",
 	} -- like {'gopls', 'clangd'}
 	for _, ls in ipairs(language_servers) do
 		require("lspconfig")[ls].setup({
