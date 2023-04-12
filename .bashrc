@@ -7,8 +7,10 @@ PS1='[\u@\h \W]\$ '
 
 alias ls='ls -1sh --color=auto'
 alias chrome='google-chrome-stable'
-alias v='source ~/cs/.envs/py/nvim/bin/activate ; nvim'
-alias base='source ~/cs/.envs/base/bin/activate'
+alias v='nvim'
+alias envim='source ~/cs/.envs/nvim/bin/activate'
+alias activate="source .venv/bin/activate"
+alias cdz="cd ~/cs/prj/zaida && source .venv/bin/activate"
 alias dots='/usr/bin/git --git-dir=/home/leo/.dotfiles/ --work-tree=/home/leo'
 alias du='du -sh'
 alias hibernate='systemctl hibernate'
@@ -24,6 +26,3 @@ if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integr
 # Created by `pipx` on 2022-06-10 18:51:22
 export PATH="$PATH:/home/leo/.local/bin"
 alias td="~/cs/prj/todo-cmd/todo.py"
-alias vial="/opt/vial-appimage/vial-appimage.AppImage"
-alias activate="source .venv/bin/activate"
-alias cdz="cd ~/cs/prj/zaida && source .venv/bin/activate"
