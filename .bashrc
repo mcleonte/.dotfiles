@@ -8,7 +8,7 @@ PS1='[\u@\h \W]\$ '
 alias ls='ls -1sh --color=auto'
 alias chrome='google-chrome-stable'
 alias v='nvim'
-alias envim='source ~/cs/.envs/nvim/bin/activate'
+alias envim='source ~/cs/.envs/py/nvim/bin/activate'
 alias activate="source .venv/bin/activate"
 alias cdz="cd ~/cs/prj/zaida && source .venv/bin/activate"
 alias dots='/usr/bin/git --git-dir=/home/leo/.dotfiles/ --work-tree=/home/leo'
