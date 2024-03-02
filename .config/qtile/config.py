@@ -37,125 +37,147 @@ shift = "shift"
 ctrl = "control"
 hyper = [mod, shift, alt, ctrl]
 
-left = "n"
-right = "o"
-up = "e"
-down = "a"
+left = "h"
+down = "j"
+up = "k"
+right = "l"
 
 terminal = guess_terminal()
 
 keys = [
-  # Switch between windows
-  Key([mod], left, lazy.layout.left(), desc="Move focus to left"),
-  Key([mod], right, lazy.layout.right(), desc="Move focus to right"),
-  Key([mod], down, lazy.layout.down(), desc="Move focus down"),
-  Key([mod], up, lazy.layout.up(), desc="Move focus up"),
-  Key([mod], "space", lazy.layout.next(),
-    desc="Move window focus to other window"),
+    # Switch between windows
+    Key([mod], left, lazy.layout.left(), desc="Move focus to left"),
+    Key([mod], right, lazy.layout.right(), desc="Move focus to right"),
+    Key([mod], down, lazy.layout.down(), desc="Move focus down"),
+    Key([mod], up, lazy.layout.up(), desc="Move focus up"),
+    Key([mod],
+        "space",
+        lazy.layout.next(),
+        desc="Move window focus to other window"),
 
-  # Move windows between left/right columns or move up/down in current stack.
-  # Moving out of range in Columns layout will create new column.
-  Key([mod, shift], left, lazy.layout.shuffle_left(),
-    desc="Move window to the left"),
-  Key([mod, shift], right, lazy.layout.shuffle_right(),
-    desc="Move window to the right"),
-  Key([mod, shift], down, lazy.layout.shuffle_down(),
-    desc="Move window down"),
-  Key([mod, shift], up, lazy.layout.shuffle_up(), desc="Move window up"),
+    # Move windows between left/right columns or move up/down in current stack.
+    # Moving out of range in Columns layout will create new column.
+    Key([mod, shift],
+        left,
+        lazy.layout.shuffle_left(),
+        desc="Move window to the left"),
+    Key([mod, shift],
+        right,
+        lazy.layout.shuffle_right(),
+        desc="Move window to the right"),
+    Key([mod, shift], down, lazy.layout.shuffle_down(),
+        desc="Move window down"),
+    Key([mod, shift], up, lazy.layout.shuffle_up(), desc="Move window up"),
 
-  # Grow windows. If current window is on the edge of screen and direction
-  # will be to screen edge - window would shrink.
-  Key([mod, ctrl], left, lazy.layout.grow_left(),
-    desc="Grow window to the left"),
-  Key([mod, ctrl], right, lazy.layout.grow_right(),
-    desc="Grow window to the right"),
-  Key([mod, ctrl], down, lazy.layout.grow_down(),
-    desc="Grow window down"),
-  Key([mod, ctrl], up, lazy.layout.grow_up(), desc="Grow window up"),
-  # Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    # Grow windows. If current window is on the edge of screen and direction
+    # will be to screen edge - window would shrink.
+    Key([mod, ctrl],
+        left,
+        lazy.layout.grow_left(),
+        desc="Grow window to the left"),
+    Key([mod, ctrl],
+        right,
+        lazy.layout.grow_right(),
+        desc="Grow window to the right"),
+    Key([mod, ctrl], down, lazy.layout.grow_down(), desc="Grow window down"),
+    Key([mod, ctrl], up, lazy.layout.grow_up(), desc="Grow window up"),
+    # Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
 
-  # Toggle between split and unsplit sides of stack.
-  # Split = all windows displayed
-  # Unsplit = 1 window displayed, like Max layout, but still with
-  # multiple stack panes
-  Key([mod, shift], "Return", lazy.layout.toggle_split(),
-    desc="Toggle between split and unsplit sides of stack"),
+    # Toggle between split and unsplit sides of stack.
+    # Split = all windows displayed
+    # Unsplit = 1 window displayed, like Max layout, but still with
+    # multiple stack panes
+    Key([mod, shift],
+        "Return",
+        lazy.layout.toggle_split(),
+        desc="Toggle between split and unsplit sides of stack"),
 
-  # Toggle between different layouts as defined below
-  Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
-  Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
+    # Toggle between different layouts as defined below
+    Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
+    Key([mod, ctrl], "r", lazy.restart(), desc="Restart Qtile"),
+    Key([mod, ctrl], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key(hyper,
+        "r",
+        lazy.spawncmd(),
+        desc="Spawn a command using a prompt widget"),
+    Key(hyper, "t", lazy.spawn(terminal), desc="Launch terminal"),
+    Key(hyper, "e", lazy.spawn("microsoft-edge-stable")),
+    Key(hyper, "i", lazy.spawn("google-chrome-stable")),
+    Key(hyper, "y",
+        lazy.spawn("google-chrome-stable --app=https://www.youtube.com")),
+    Key(hyper, "m",
+        lazy.spawn("google-chrome-stable --app=https://music.youtube.com")),
+    Key(hyper, "g",
+        lazy.spawn("google-chrome-stable --app=https://chat.openai.com/chat")),
+    Key(hyper, "f",
+        lazy.spawn("google-chrome-stable --app=https://feedly.com")),
+    Key(hyper, "b", lazy.spawn("blueman-manager")),
+    Key(hyper, "p", lazy.spawn("pavucontrol")),
+    Key(hyper, "v", lazy.spawn("nvidia-settings")),
+    Key([mod, alt], left, lazy.to_screen(3)),  # 3
+    Key([mod, alt], down, lazy.to_screen(2)),  # 2
+    Key([mod, alt], up, lazy.to_screen(1)),  # 1
+    Key([mod, alt], right, lazy.to_screen(2)),  # 0
+    Key([mod, alt, shift], left, lazy.window.toscreen(3),
+        lazy.to_screen(3)),  # 3
+    Key([mod, alt, shift], down, lazy.window.toscreen(2),
+        lazy.to_screen(2)),  # 2
+    Key([mod, alt, shift], up, lazy.window.toscreen(1), lazy.to_screen(1)),  # 1
+    Key([mod, alt, shift], right, lazy.window.toscreen(0),
+        lazy.to_screen(0)),  # 0
 
-  Key([mod, ctrl], "r", lazy.restart(), desc="Restart Qtile"),
-  Key([mod, ctrl], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-
-  Key(hyper, "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
-  Key(hyper, "t", lazy.spawn(terminal), desc="Launch terminal"),
-  Key(hyper, "e", lazy.spawn("microsoft-edge-stable")),
-  Key(hyper, "i", lazy.spawn("google-chrome-stable")),
-  Key(hyper, "y", lazy.spawn("google-chrome-stable --app=https://www.youtube.com")),
-  Key(hyper, "m", lazy.spawn("google-chrome-stable --app=https://music.youtube.com")),
-  Key(hyper, "g", lazy.spawn("google-chrome-stable --app=https://chat.openai.com/chat")),
-  Key(hyper, "f", lazy.spawn("google-chrome-stable --app=https://feedly.com")),
-  Key(hyper, "b", lazy.spawn("blueman-manager")),
-  Key(hyper, "p", lazy.spawn("pavucontrol")),
-  Key(hyper, "v", lazy.spawn("nvidia-settings")),
-
-  Key([mod, alt], left, lazy.to_screen(3)), # 3
-  Key([mod, alt], up, lazy.to_screen(1)), # 1
-  Key([mod, alt], down, lazy.to_screen(0)), # 0
-  Key([mod, alt], right, lazy.to_screen(2)), # 2
-
-  Key([mod, alt, shift], left, lazy.window.toscreen(3), lazy.to_screen(3)), # 3
-  Key([mod, alt, shift], up, lazy.window.toscreen(1), lazy.to_screen(1)), # 1
-  Key([mod, alt, shift], down, lazy.window.toscreen(0), lazy.to_screen(0)), # 0
-  Key([mod, alt, shift], right, lazy.window.toscreen(2), lazy.to_screen(2)), # 2
-
-  # Key([mod], "f", lazy.window.toggle_floating()),
-
-  Key([], "Print", lazy.spawn("flameshot gui")),
+    # Key([mod], "f", lazy.window.toggle_floating()),
+    Key([], "Print", lazy.spawn("flameshot gui")),
 ]
 
-groups = [Group(i) for i in "isrtcld"]
+groups = [Group(i) for i in "12345678"]
 
 for i in groups:
   keys.extend([
-    # mod1 + letter of group = switch to group
-    Key([mod], i.name, lazy.group[i.name].toscreen(),
-    desc=f"Switch to group {i.name}"),
+      # mod1 + letter of group = switch to group
+      Key([mod],
+          i.name,
+          lazy.group[i.name].toscreen(),
+          desc=f"Switch to group {i.name}"),
 
-    # mod1 + shift + letter of group = switch to & move focused window to group
-    Key([mod, shift], i.name, lazy.window.togroup(i.name, switch_group=True),
-      desc=f"Switch to & move focused window to group {i.name}"),
-    # Or, use below if you prefer not to switch to that group.
-    # # mod1 + shift + letter of group = move focused window to group
-    # Key([mod, ctrl], i.name, lazy.window.togroup(i.name),
-    #  desc="move focused window to group {}".format(i.name)),
+      # mod1 + shift + letter of group = switch to & move focused window to group
+      Key([mod, shift],
+          i.name,
+          lazy.window.togroup(i.name, switch_group=True),
+          desc=f"Switch to & move focused window to group {i.name}"),
+      # Or, use below if you prefer not to switch to that group.
+      # # mod1 + shift + letter of group = move focused window to group
+      # Key([mod, ctrl], i.name, lazy.window.togroup(i.name),
+      #  desc="move focused window to group {}".format(i.name)),
   ])
 
 layouts = [
-  layout.Columns(border_focus="magenta",
-                   border_normal="royalblue",
-                   num_columns=3,
-                   margin=8,
-                   border_width=3,),
-  layout.Max(),
-  # Try more layouts by unleashing below layouts.
-  layout.Stack(num_stacks=2),
-  layout.Bsp(),
-  layout.Matrix(),
-  layout.MonadTall(),
-  layout.MonadWide(),
-  layout.RatioTile(),
-  layout.Tile(),
-  layout.TreeTab(),
-  layout.VerticalTile(),
-  layout.Zoomy(),
+    layout.Columns(
+        border_focus="magenta",
+        border_normal="royalblue",
+        num_columns=3,
+        margin=8,
+        border_width=3,
+    ),
+    layout.Max(),
+    # Try more layouts by unleashing below layouts.
+    layout.Stack(num_stacks=2),
+    layout.Bsp(),
+    layout.Matrix(),
+    layout.MonadTall(),
+    layout.MonadWide(),
+    layout.RatioTile(),
+    layout.Tile(),
+    layout.TreeTab(),
+    layout.VerticalTile(),
+    layout.Zoomy(),
 ]
 
 widget_defaults = dict(
-  font="sans",
-  fontsize=12,
-  padding=3,
+    font="sans",
+    fontsize=12,
+    padding=3,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -174,53 +196,42 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 widget.TextBox("default config", name="default"),
-                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
+                widget.TextBox(
+                    "Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 widget.Systray(),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
                 widget.QuickExit(),
             ],
             24,
-        ),
-    ),
+        ),),
     Screen(
         top=bar.Bar(
-            [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
-                widget.WindowName()
-            ],
-            24
-        )
-    ),
+            [widget.CurrentLayout(),
+             widget.GroupBox(),
+             widget.WindowName()], 24)),
     Screen(
         top=bar.Bar(
-            [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
-                widget.WindowName()
-            ],
-            24
-        )
-    ),
+            [widget.CurrentLayout(),
+             widget.GroupBox(),
+             widget.WindowName()], 24)),
     Screen(
         top=bar.Bar(
-            [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
-                widget.WindowName()
-            ],
-            24
-        )
-    )
+            [widget.CurrentLayout(),
+             widget.GroupBox(),
+             widget.WindowName()], 24))
 ]
 
 # Drag floating layouts.
 mouse = [
-  Drag([mod], "Button1", lazy.window.set_position_floating(),
+    Drag([mod],
+         "Button1",
+         lazy.window.set_position_floating(),
          start=lazy.window.get_position()),
-  Drag([mod], "Button3", lazy.window.set_size_floating(),
+    Drag([mod],
+         "Button3",
+         lazy.window.set_size_floating(),
          start=lazy.window.get_size()),
-  Click([mod], "Button2", lazy.window.bring_to_front())
+    Click([mod], "Button2", lazy.window.bring_to_front())
 ]
 
 dgroups_key_binder = None
