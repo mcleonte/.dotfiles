@@ -118,7 +118,7 @@ keys = [
     Key([mod, alt], left, lazy.to_screen(3)),  # 3
     Key([mod, alt], down, lazy.to_screen(2)),  # 2
     Key([mod, alt], up, lazy.to_screen(1)),  # 1
-    Key([mod, alt], right, lazy.to_screen(2)),  # 0
+    Key([mod, alt], right, lazy.to_screen(0)),  # 0
     Key([mod, alt, shift], left, lazy.window.toscreen(3),
         lazy.to_screen(3)),  # 3
     Key([mod, alt, shift], down, lazy.window.toscreen(2),
