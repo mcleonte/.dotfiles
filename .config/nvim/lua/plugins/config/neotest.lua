@@ -17,7 +17,7 @@ return function()
           "--log-level",
           "DEBUG",
         },
-        python = "/home/leo/cs/.envs/py/nvim/bin/python",
+        python = vim.g.python3_host_prog,
       }),
     },
   })

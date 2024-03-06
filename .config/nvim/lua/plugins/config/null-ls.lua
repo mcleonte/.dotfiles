@@ -11,19 +11,15 @@ return function()
 
 			-- python
 			null_ls.builtins.diagnostics.pylint.with({
-				command = "/home/leo/cs/.envs/py/nvim/bin/pylint",
 			}),
 
 			null_ls.builtins.formatting.yapf.with({
-				command = "/home/leo/cs/.envs/py/nvim/bin/yapf",
 			}),
 
 			-- sql
 			null_ls.builtins.formatting.sqlfluff.with({
-				command = "/home/leo/cs/.envs/py/nvim/bin/sqlfluff",
 			}),
 			null_ls.builtins.diagnostics.sqlfluff.with({
-				command = "/home/leo/cs/.envs/py/nvim/bin/sqlfluff",
 			}),
 
 			-- markdown
@@ -52,4 +48,30 @@ return function()
 			end
 		end,
 	})
+  local function get_python_host_prog()
+    local cwd = vim.fn.getcwd()
+    if vim.fn.glob(cwd .. "/poetry.lock") then
+      local venv = vim.fn.trim(vim.fn.system("poetry env info -p"))
+      if vim.fn.system('if [ -d "' .. venv .. '" ]; then echo "1"; fi') == "1" then
+        return venv .. "/bin/python"
+      end
+    end
+    if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
+      return cwd .. "/venv/bin/python"
+    elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
+      return cwd .. "/.venv/bin/python"
+      -- elseif vim.fn.exists("$VIRTUAL_ENV") then -- concatenate nil value error?
+      -- 	return os.getenv("VIRTUAL_ENV") .. "/bin/python"
+    else
+      return "/usr/bin/python"
+    end
+  end
+
+  local pyexec = get_python_host_prog()
+  vim.g.python3_host_prog = pyexec
+  local venv_bin_dir = string.gsub(pyexec, "/python$", "")
+        command = venv_bin_dir .. "/pylint",
+        command = venv_bin_dir .. "/yapf",
+        command = venv_bin_dir .. "/sqlfluff",
+        command = venv_bin_dir .. "/sqlfluff",
 end
