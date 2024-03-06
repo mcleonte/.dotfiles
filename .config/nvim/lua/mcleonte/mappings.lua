@@ -1,5 +1,5 @@
 local vim = vim
-local g, c, a = vim.g, vim.cmd, vim.api
+local g = vim.g
 local nvim_command = vim.api.nvim_command
 
 local function map(mode, shortcut, command, desc)
