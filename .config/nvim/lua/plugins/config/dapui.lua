@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 return function()
   local dapui = require("dapui")
 
