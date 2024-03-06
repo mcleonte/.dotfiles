@@ -28,3 +28,7 @@ if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integr
 # Created by `pipx` on 2022-06-10 18:51:22
 export PATH="$PATH:/home/leo/.local/bin"
 alias td="~/cs/prj/todo-cmd/todo.py"
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
