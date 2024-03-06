@@ -1,12 +1,12 @@
 local c = vim.cmd
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
-c [[
+c([[
   augroup packer_user_config
     autocmd!
     autocmd BufWritePost $HOME/.config/nvim/lua/plugins/init.lua source <afile> | PackerSync
   augroup end
-]]
+]])
 
 -- Save and load buffer folds when leaving and entering window
 -- c([[
