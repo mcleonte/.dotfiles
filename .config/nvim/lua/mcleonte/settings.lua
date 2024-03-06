@@ -100,19 +100,6 @@ c([[
   augroup END
 ]])
 
--- colorscheme
-
--- default to dark version of selected colorscheme
--- o.background = "dark"
-
--- g.aurora_italic = 1
--- g.aurora_transparent = 1
--- g.aurora_bold = 1
--- g.aurora_darker = 1 -- darker background
--- c("colorscheme aurora")
-
-c("colorscheme duskfox")
-
 -- PLUGINS
 
 g.neoterm_default_mod = "botright"

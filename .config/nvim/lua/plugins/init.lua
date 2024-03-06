@@ -15,7 +15,6 @@ packer_startup(function()
   use({ "hrsh7th/nvim-compe" }) -- dependency for mcleonte/autocompletion
 
   -- colorschemes
-  use({ "EdenEast/nightfox.nvim", ext = "nightfox" })
 
   -- common
   --use("vim-airline/vim-airline") -- powerline
@@ -144,7 +143,6 @@ packer_startup(function()
     "nvim-lualine/lualine.nvim",
     ext = "lualine",
     requires = { "nvim-tree/nvim-web-devicons", opt = true },
-    after = "nightfox.nvim", -- need to load theme before lualine
   })
   -- use("nanozuki/tabby.nvim") -- using lualine tabline instead
 
@@ -203,4 +201,10 @@ packer_startup(function()
 
   -- not working
   use({ "Iron-E/nvim-libmodal" }) --, ext = "libmodal" })
+	use({
+		"catppuccin/nvim",
+		as = "catppuccin",
+		ext = "catppuccin",
+	})
+		after = "catppuccin", -- need to load theme before lualine
 end)
