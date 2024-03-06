@@ -197,7 +197,7 @@ packer_startup(function()
 		tag = "*",
 	})
 
-	-- use({ "lukas-reineke/indent-blankline.nvim", ext = "indent-blankline" })
+	use({ "lukas-reineke/indent-blankline.nvim", ext = "indent-blankline" })
 	use({
 		"kevinhwang91/nvim-ufo",
 		ext = "nvim-ufo",

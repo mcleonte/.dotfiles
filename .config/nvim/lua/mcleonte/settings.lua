@@ -23,7 +23,7 @@ o.ttimeoutlen = 100
 o.showmatch = true -- show matching brackets
 o.scrolloff = 3 -- always show 3 rows from edge of the screen
 o.synmaxcol = 300 -- stop syntax highlight after x lines for performance
-o.laststatus = 2 -- always show status line
+o.laststatus = 3 -- always show status line
 
 o.splitbelow = true -- when splitting horizontally, move coursor to lower pane
 o.splitright = true -- when splitting vertically, mnove coursor to right pane
@@ -87,7 +87,7 @@ c([[
 -- Commands mode
 o.wildmenu = true -- on TAB, complete options for system command
 o.wildignore =
-"deps,.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc"
+	"deps,.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc"
 
 -- Only show cursorline in the current window and in normal mode.
 c([[
@@ -105,5 +105,3 @@ c([[
 g.neoterm_default_mod = "botright"
 
 -- vim.g.material_style = "palenight"
-
-g.python3_host_prog = "$HOME/cs/.envs/py/nvim/bin/python"
