@@ -1,7 +1,10 @@
 local vim = vim
 local lspconfig = require("lspconfig")
 
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 lspconfig.lua_ls.setup({
+	capabilities = capabilities,
 	settings = {
 		Lua = {
 			runtime = {
@@ -39,6 +42,7 @@ lspconfig.lua_ls.setup({
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#pylsp
 -- https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
 lspconfig.pylsp.setup({
+	capabilities = capabilities,
 	cmd = { "/home/leo/cs/.envs/py/nvim/bin/pylsp" },
 	settings = {
 		pylsp = {
