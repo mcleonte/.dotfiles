@@ -7,10 +7,7 @@ PS1='[\u@\h \W]\$ '
 
 alias ls='ls -1sh --color=auto'
 alias chrome='google-chrome-stable'
-alias v='nvim'
-alias envim='source ~/cs/.envs/py/nvim/bin/activate'
 alias activate="source .venv/bin/activate"
-alias cdz="cd ~/cs/prj/zaida && source .venv/bin/activate"
 alias dots='/usr/bin/git --git-dir=/home/leo/.dotfiles/ --work-tree=/home/leo'
 alias du='du -sh'
 alias hibernate='systemctl hibernate'
@@ -30,5 +27,8 @@ export PATH="$PATH:/home/leo/.local/bin"
 alias td="~/cs/prj/todo-cmd/todo.py"
 
 export PYENV_ROOT="$HOME/.pyenv"
+export BROWSER=google-chrome-stable
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+eval "$(zoxide init bash)"
+alias v="NVIM_APPNAME=lazyvim nvim"
